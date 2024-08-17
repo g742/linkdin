@@ -20,7 +20,7 @@ jobs:
         run: |
           docker build -t shahbaz .
           echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
-          docker tag shahbaz:golu docker.io/library/shahbaz:golu
+          docker tag shahbaz docker.io/library/shahbaz:golu
           docker push docker.io/library/shahbaz:golu
   deploy:
     needs: build
