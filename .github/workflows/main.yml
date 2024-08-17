@@ -20,7 +20,7 @@ jobs:
         run: |
           docker build -t shahbaz .
           echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
-          docker push shahbaz:latest
+          docker push shahbaz
   deploy:
     needs: build
     runs-on: ubuntu-latest
