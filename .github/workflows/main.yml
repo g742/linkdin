@@ -18,9 +18,9 @@ jobs:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
         run: |
-          docker build -t shahbaz .
+          docker build -t shahbaz:latest .
           echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
-          docker push docker.io/library/shahbaz
+          docker push shahbaz:latest
   deploy:
     needs: build
     runs-on: ubuntu-latest
