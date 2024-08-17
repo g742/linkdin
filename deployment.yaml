@@ -1,20 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: wisecow-app
+  name: mywisecow
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
-      app: wisecow
+      name: wisecow-pod
   template:
     metadata:
       labels:
-        app: wisecow
+        name: wisecow-pod
     spec:
       containers:
-      - name: wisecow
-        image: shahbaz:latest
+      - name: wisecow-container
+        image: meenuc95/test:wisecow
         ports:
         - containerPort: 4499
-
