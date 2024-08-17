@@ -18,9 +18,9 @@ jobs:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
         run: |
-          docker build -t samarthr8/wisecow-app:latest .
+          docker build -t shahbaz .
           echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
-          docker push samarthr8/wisecow-app:latest
+          docker push shahbaz:latest
   deploy:
     needs: build
     runs-on: ubuntu-latest
