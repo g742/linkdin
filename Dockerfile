@@ -1,18 +1,28 @@
-FROM debian:bullseye-slim
+FROM ubuntu:latest
+
+# Update package list and install required packages
+RUN apt-get update && apt-get install -y \
+    fortune-mod \
+    cowsay \
+    netcat-openbsd
+
+# Set PATH to include /usr/games
+ENV PATH="/usr/games:${PATH}"
 
 WORKDIR /app
 
-RUN apt-get update && \
-    apt-get install -y fortune-mod cowsay netcat-openbsd && \
-    rm -rf /var/lib/apt/lists/*
+# Copy the script into the container
+COPY wisecow.sh .
 
-ENV PATH="/usr/games:${PATH}"
+# Verify the script is in the correct location
+RUN pwd
+RUN ls -l /app
 
-COPY wisecow.sh /app/wisecow.sh
+# Ensure the script is executable
+RUN chmod +x ./wisecow.sh
 
-RUN chmod +x /app/wisecow.sh
-
+# Expose the port on which the application will run
 EXPOSE 4499
 
-CMD ["/bin/bash", "/app/wisecow.sh"]
-
+# Set the default command to execute when the container starts
+CMD ["./wisecow.sh"]
